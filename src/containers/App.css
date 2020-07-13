@@ -5,3 +5,12 @@ body {
   background: linear-gradient(90deg, rgba(179,149,36,1) 0%, rgba(255,189,0,1) 14%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b39524",endColorstr="#ffbd00",GradientType=1);
 }
+
+.particles {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
