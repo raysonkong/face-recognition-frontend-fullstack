@@ -68,3 +68,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ### updated on 8 July 2020
+
+### 10 Aug 2020
+  Added one bounding box, will try to add multiple bounding boxes for multiple faces in one image
