@@ -18,7 +18,7 @@ class App extends React.Component {
     super();
     this.state = {
       input: '',
-      boundingBox: {}
+      htmlBoundingBoxes: []
     }
   }
 
@@ -26,25 +26,35 @@ class App extends React.Component {
     const image = document.getElementById("inputImage");
     const width = Number(image.width);
     const height = Number(image.height);
-    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
 
-    return {
-      top: clarifaiFace.top_row * height,
-      bottom: (1-clarifaiFace.bottom_row) * height,
-      left:  clarifaiFace.left_col * width,
-      right: (1-clarifaiFace.right_col) * width
-    }
+    { /*const clarifaiFaceLocations = data.outputs[0].data.regions[0].region_info.bounding_box; */}
+
+    const clarifaiRegions = data.outputs[0].data.regions;
+    let percentageFaceLocations = clarifaiRegions.map(region => {
+      return region.region_info.bounding_box
+    })
+
+    let htmlFaceLocations = percentageFaceLocations.map(percentage => {
+      return {
+        top: percentage.top_row * height,
+        bottom: (1-percentage.bottom_row) * height,
+        left:  percentage.left_col * width,
+        right: (1-percentage.right_col) * width        
+      }
+    })
+
+    return htmlFaceLocations;
   }
 
   drawFaceBox = (data) => {
-    this.setState({boundingBox: data});
+    this.setState({htmlBoundingBoxes: data})
   }
 
   componentDidMount() {
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", "https://samples.clarifai.com/face-det.jpg")
     .then(response => {
-      const location = this.calculateFaceLocation(response)
-      this.drawFaceBox(location)
+      const htmlLocations = this.calculateFaceLocation(response)
+       this.drawFaceBox(htmlLocations)
     })
   }
 
@@ -64,7 +74,7 @@ class App extends React.Component {
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        <FaceRecognition boundingBox={this.state.boundingBox} />
+        <FaceRecognition htmlBoundingBoxes={this.state.htmlBoundingBoxes} />
       </div>
     )
   }

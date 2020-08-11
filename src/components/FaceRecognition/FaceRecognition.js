@@ -1,7 +1,9 @@
 import React from 'react';
-import './FaceRecognition.css'
+import BoundingBox from '../BoundingBox/BoundingBox';
+import BoundingBoxesList from '../BoundingBoxesList/BoundingBoxesList';
 
-const FaceRecognition = ({boundingBox}) => {
+
+const FaceRecognition = ({htmlBoundingBoxes}) => {
     return  (
         <div className="center mt2">
           <div className="image-container absolute">
@@ -9,9 +11,11 @@ const FaceRecognition = ({boundingBox}) => {
                width="500"
                id="inputImage"
             />
-             <div className="bounding-box"
-                  style={boundingBox}
-             ></div>
+
+
+             <BoundingBoxesList htmlBoundingBoxes={htmlBoundingBoxes}/>
+
+             
            </div>
         </div>
     )
