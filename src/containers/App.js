@@ -27,7 +27,7 @@ class App extends React.Component {
     const width = Number(image.width);
     const height = Number(image.height);
 
-    { /*const clarifaiFaceLocations = data.outputs[0].data.regions[0].region_info.bounding_box; */}
+
 
     const clarifaiRegions = data.outputs[0].data.regions;
     let percentageFaceLocations = clarifaiRegions.map(region => {
@@ -36,10 +36,10 @@ class App extends React.Component {
 
     let htmlFaceLocations = percentageFaceLocations.map(percentage => {
       return {
-        top: percentage.top_row * height,
-        bottom: (1-percentage.bottom_row) * height,
-        left:  percentage.left_col * width,
-        right: (1-percentage.right_col) * width        
+        top: percentage.top_row * height + 'px',
+        bottom: (1-percentage.bottom_row) * height + 'px',
+        left:  percentage.left_col * width + 'px',
+        right: (1-percentage.right_col) * width + 'px'        
       }
     })
 
@@ -54,6 +54,7 @@ class App extends React.Component {
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", "https://samples.clarifai.com/face-det.jpg")
     .then(response => {
       const htmlLocations = this.calculateFaceLocation(response)
+      console.log(htmlLocations)
        this.drawFaceBox(htmlLocations)
     })
   }
