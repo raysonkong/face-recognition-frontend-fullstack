@@ -1,0 +1,1 @@
+response.outputs[0].data.regions.region_info.bounding_box
