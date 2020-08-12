@@ -18,7 +18,9 @@ class App extends React.Component {
     super();
     this.state = {
       input: '',
-      htmlBoundingBoxes: []
+      htmlBoundingBoxes: [],
+      imageUrl: '',
+      imageStatus: 'loading'
     }
   }
 
@@ -50,8 +52,8 @@ class App extends React.Component {
     this.setState({htmlBoundingBoxes: data})
   }
 
-  componentDidMount() {
-    app.models.predict("a403429f2ddf4b49b307e318f00e528b", "https://images.indianexpress.com/2018/11/brazil-kit.jpg")
+  onButtonSubmit = (event) => {
+    app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.imageUrl)
     .then(response => {
       const htmlLocations = this.calculateFaceLocation(response)
       console.log(htmlLocations)
@@ -60,22 +62,37 @@ class App extends React.Component {
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value)
+    this.setState({htmlBoundingBoxes: []})
+    this.setState({imageUrl: event.target.value})
   }
 
-  onButtonSubmit = (event) => {
-    console.log("Clicked!!!")
+  handleImageLoaded() {
+    this.setState({imageStatus: "loaded"})
+  }
+
+  handleImageErrored() {
+    this.setState({imageStatus: "failed"})
   }
 
   render() {
+
+    const { htmlBoundingBoxes, imageUrl} = this.state;
     return(
       <div> 
         <Particles className="particles"/>
         <Navigation />
         <Logo />
         <Rank />
+        <h1 className="tc mt5">{this.state.imageStatus}</h1>
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
-        <FaceRecognition htmlBoundingBoxes={this.state.htmlBoundingBoxes} />
+        <FaceRecognition 
+            htmlBoundingBoxes={htmlBoundingBoxes} 
+            imageUrl={imageUrl}
+            onLoad={this.handleImageLoaded.bind(this)}
+            onError={this.handleImageErrored.bind(this)}
+        />
+
+        
       </div>
     )
   }
