@@ -51,7 +51,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    app.models.predict("a403429f2ddf4b49b307e318f00e528b", "https://samples.clarifai.com/face-det.jpg")
+    app.models.predict("a403429f2ddf4b49b307e318f00e528b", "https://images.indianexpress.com/2018/11/brazil-kit.jpg")
     .then(response => {
       const htmlLocations = this.calculateFaceLocation(response)
       console.log(htmlLocations)

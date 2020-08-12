@@ -7,7 +7,7 @@ const FaceRecognition = ({htmlBoundingBoxes}) => {
     return  (
         <div className="center mt2">
           <div className="image-container absolute">
-            <img src="https://samples.clarifai.com/face-det.jpg"
+            <img src="https://images.indianexpress.com/2018/11/brazil-kit.jpg"
                width="500"
                id="inputImage"
             />
