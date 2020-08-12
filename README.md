@@ -69,5 +69,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### updated on 8 July 2020
 
-### 10 Aug 2020
+### 10 Aug 2020 
   Added one bounding box, will try to add multiple bounding boxes for multiple faces in one image
+### 12 Aug 2020
+  Use a different image for multiple bounding boxes detection. Then implement the image link form for real.
+  
