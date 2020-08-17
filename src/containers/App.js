@@ -66,13 +66,6 @@ class App extends React.Component {
     this.setState({imageUrl: event.target.value})
   }
 
-  handleImageLoaded() {
-    this.setState({imageStatus: "loaded"})
-  }
-
-  handleImageErrored() {
-    this.setState({imageStatus: "failed"})
-  }
 
   render() {
 
@@ -83,16 +76,11 @@ class App extends React.Component {
         <Navigation />
         <Logo />
         <Rank />
-        <h1 className="tc mt5">{this.state.imageStatus}</h1>
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/>
         <FaceRecognition 
             htmlBoundingBoxes={htmlBoundingBoxes} 
             imageUrl={imageUrl}
-            onLoad={this.handleImageLoaded.bind(this)}
-            onError={this.handleImageErrored.bind(this)}
         />
-
-        
       </div>
     )
   }

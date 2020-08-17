@@ -3,7 +3,7 @@ import BoundingBox from '../BoundingBox/BoundingBox';
 import BoundingBoxesList from '../BoundingBoxesList/BoundingBoxesList';
 
 
-const FaceRecognition = ({htmlBoundingBoxes, imageUrl, onLoad, onError}) => {
+const FaceRecognition = ({htmlBoundingBoxes, imageUrl}) => {
     return  (
         <div className="center mt2">
           <div className="image-container absolute"> 
@@ -12,8 +12,6 @@ const FaceRecognition = ({htmlBoundingBoxes, imageUrl, onLoad, onError}) => {
             <img src={imageUrl}
                width="500"
                id="inputImage"
-               onload={onLoad}
-               onError={onError}
             />  
 
             {
