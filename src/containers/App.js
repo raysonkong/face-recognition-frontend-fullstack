@@ -7,6 +7,7 @@ import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
 import Rank from '../components/Rank/Rank';
 import Particles from 'react-particles-js';
 import FaceRecognition from '../components/FaceRecognition/FaceRecognition'
+import SignIn from '../components/SignIn/SignIn';
 import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
@@ -72,6 +73,7 @@ class App extends React.Component {
     const { htmlBoundingBoxes, imageUrl} = this.state;
     return(
       <div> 
+      
         <Particles className="particles"/>
         <Navigation />
         <Logo />
@@ -81,6 +83,9 @@ class App extends React.Component {
             htmlBoundingBoxes={htmlBoundingBoxes} 
             imageUrl={imageUrl}
         />
+
+        
+        {/*<SignIn /> */}
       </div>
     )
   }

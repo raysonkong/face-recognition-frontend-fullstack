@@ -6,7 +6,7 @@ import BoundingBoxesList from '../BoundingBoxesList/BoundingBoxesList';
 const FaceRecognition = ({htmlBoundingBoxes, imageUrl}) => {
     return  (
         <div className="center mt2">
-          <div className="image-container absolute"> 
+          <div className="image-container relative"> 
 
 
             <img src={imageUrl}
